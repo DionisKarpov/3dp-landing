@@ -76,6 +76,20 @@
           },
           "defaultConfiguration": "development"
         },
+        "serve-ssr": {
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "3dp-landing:build:development",
+              "serverTarget": "3dp-landing:server:development"
+            },
+            "production": {
+              "browserTarget": "3dp-landing:build:production",
+              "serverTarget": "3dp-landing:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },

@@ -8,11 +8,12 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:prod": "ng build --configuration production",
-    "build:ssr": "ng build && ng run 3dp-landing:server:production",
+    "build:ssr": "ng build --configuration production && ng run 3dp-landing:server:production",
+    "build:ssr:gh": "ng build --configuration production --base-href \"/3dp-landing/\" && ng run 3dp-landing:server:production",
     "serve:ssr": "node dist/3dp-landing/server/server.mjs",
     "dev:ssr": "ng run 3dp-landing:serve-ssr",
-    "deploy": "ng build --configuration production --base-href \"/3dp-landing/\" && npx angular-cli-ghpages --dir=dist/3dp-landing/browser",
-    "deploy:ssr": "npm run build:ssr --base-href \"/3dp-landing/\" && npx angular-cli-ghpages --dir=dist/3dp-landing/browser"
+    "deploy": "ng build --configuration production --base-href \"/3dp-landing/\" && npx angular-cli-ghpages --dir=dist/3dp-landing",
+    "deploy:ssr": "npm run build:ssr:gh && npx angular-cli-ghpages --dir=dist/3dp-landing/browser"
   },
   "private": true,
   "dependencies": {

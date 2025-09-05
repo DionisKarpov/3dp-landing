@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: var(--black);
+
+  &__content {
+    flex: 1;
+    max-width: 1200px;
+    width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__footer {
+    width: 100%;
+    margin-top: auto;
+    background-color: var(--dark-gray);
+  }
+}

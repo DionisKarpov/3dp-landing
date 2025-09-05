@@ -7,7 +7,13 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:3dp-landing": "node dist/3dp-landing/server/server.mjs"
+    "serve:ssr:3dp-landing": "node dist/3dp-landing/server/server.mjs",
+    "build:ssr": "ng build --configuration production && ng run 3dp-landing:server:production",
+    "serve:ssr": "node dist/3dp-landing/server/server.mjs",
+    "dev:ssr": "ng run 3dp-landing:serve-ssr",
+    "build:prod": "ng build --configuration production",
+    "deploy": "ng build --configuration production && npx angular-cli-ghpages --dir=dist/3dp-landing",
+    "deploy:ssr": "npm run build:ssr && npx angular-cli-ghpages --dir=dist/3dp-landing"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +25,7 @@
     "@angular/platform-server": "^20.0.0",
     "@angular/router": "^20.0.0",
     "@angular/ssr": "^20.0.0",
+    "@nguniversal/express-engine": "^13.1.1",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -31,6 +38,7 @@
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "angular-cli-ghpages": "^2.0.3",
     "jasmine-core": "~5.7.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

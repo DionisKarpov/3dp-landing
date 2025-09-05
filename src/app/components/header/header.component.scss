@@ -1,0 +1,161 @@
+:host {
+  position: relative;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 8px 0 0 0;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    flex-shrink: 0;
+  }
+
+  &__nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__cta {
+    flex-shrink: 0;
+  }
+
+  &__toggle {
+    display: none;
+  }
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+
+  &__icon {
+    width: 40px;
+    height: 46px;
+    background: url('/assets/images/3dp-minimal-logo.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  &__text {
+    font-family: 'Readex Pro', sans-serif;
+    color: var(--pure-white);
+    font-size: 36px;
+    letter-spacing: 2px;
+  }
+}
+
+.nav {
+
+  &__list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 48px;
+  }
+
+  &__link {
+    color: var(--text-light-green);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      color: var(--main-green);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+.cta-btn {
+  padding: 12px 32px;
+  color: var(--main-green);
+  background: transparent;
+  border: 1px solid var(--main-green);
+  border-radius: 60px;
+  font-family: 'Tektur', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: .2s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--main-green);
+    color: var(--black);
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav__list {
+    gap: 1.5rem;
+  }
+  
+  .cta-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header__container {
+    padding: 0 1rem;
+  }
+
+  .header__toggle {
+    display: flex;
+    order: 3;
+  }
+
+  .header__cta {
+    order: 2;
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  .cta-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__container {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  .logo__text {
+    font-size: 1.25rem;
+  }
+
+  .logo__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .cta-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+}

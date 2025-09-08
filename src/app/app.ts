@@ -5,6 +5,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { AboutComponent } from './components/about/about.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { AdvantagesComponent } from './components/advantages/advantages.component';
+import { MaterialsComponent } from './components/materials/materials.component';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,9 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     FooterComponent,
     BannerComponent,
     AboutComponent,
-    GalleryComponent
+    GalleryComponent,
+    AdvantagesComponent,
+    MaterialsComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'

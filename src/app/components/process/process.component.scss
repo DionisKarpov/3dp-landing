@@ -1,0 +1,199 @@
+// Темні зелені неон-акценти
+.process {
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    margin: 0 0 64px 0;
+    color: var(--white);
+    font-family: Tektur;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  &__viewport {
+    overflow: hidden;
+    position: relative;
+    border-radius: 16px;
+    padding: 8px 0;
+    margin-bottom: 38px;
+
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 100%;
+      z-index: 2;
+    }
+
+    &:before {
+      left: 0;
+      background: linear-gradient(270deg, rgba(12, 16, 14, 0.00) 2.31%, #0C100E 90%);
+    }
+
+    &:after {
+      right: 0;
+      background: linear-gradient(90deg, rgba(12, 16, 14, 0.00) 2.31%, #0C100E 90%);
+    }
+  }
+
+  &__strip {
+    display: flex;
+    align-items: center;
+    transition: transform 360ms cubic-bezier(.2,.7,.2,1);
+    will-change: transform;
+    box-sizing: border-box;
+  }
+
+  &__card {
+    position: relative;
+    flex: 0 0 auto;
+    margin: 0;
+    border-radius: 32px;
+    background: linear-gradient(180deg, rgba(12, 16, 14, 0.00) 49.22%, #0B1A13 88.2%);
+    overflow: hidden;
+
+    * {
+      user-select: none;
+    }
+
+    &--active {
+      height: 412px !important;
+      width: 308px !important;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 32px;
+      padding: 1px;
+      background: linear-gradient(180deg, #00DF82 0%, #0B1A13 100%);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: xor;
+      -webkit-mask-composite: xor;
+      transition: all .2s ease;
+      user-select: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      &::before {
+        background: var(--main-green);
+        transition: .2s ease-out;
+      }
+    }
+  }
+
+  &__image {
+    position: relative;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    left: 32px;
+    bottom: 32px;
+    color: var(--white);
+    font-family: Tektur;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  }
+
+  &__halo {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 20px;
+    box-shadow: 0 0 60px 12px rgba(25,255,133,0.12) inset;
+    opacity: 0.6;
+  }
+
+  &__progress {
+    padding: 6px 0 0;
+  }
+
+  &__track {
+    position: relative;
+    height: 28px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__rail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 3px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, rgba(25,255,133,0.25), rgba(25,255,133,0.08));
+    border-radius: 2px;
+  }
+  
+  &__rail-colored {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 3px;
+    transform: translateY(-50%);
+    background: var(--main-green);
+  }
+
+  &__knob {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: var(--main-green);
+    
+    box-shadow: 0 0 20.176px 0 rgba(71, 186, 117, 0.23), 0 0 9.795px 0 rgba(71, 186, 117, 0.29), 0 0 55.275px 0 rgba(71, 186, 117, 0.16), 0 0 4.802px 0 rgba(71, 186, 117, 0.36);
+    cursor: grab;
+    touch-action: none;
+
+    &:active {
+      transform: translate(-50%, -50%) scale(0.98);
+      cursor: grabbing;
+      box-shadow:
+        0 0 0 10px rgba(25,255,133,0.18),
+        0 12px 22px rgba(0,0,0,0.4);
+    }
+  }
+
+  &__knob-number {
+    color: var(--black);
+    text-align: center;
+    font-family: Tektur;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+  }
+}

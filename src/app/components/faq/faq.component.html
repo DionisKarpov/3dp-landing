@@ -1,0 +1,47 @@
+
+<section class="faq" id="faq">
+  <div class="faq__container">
+    <div class="faq__left">
+      <h2 class="faq__title">
+        Є Запитання?
+      </h2>
+      
+      <p class="faq__description">
+        Якщо у вас залишились додаткові запитання або вам потрібна додаткова інформація, 
+        будь ласка зв'яжіться з нами:
+      </p>
+      
+      <button class="cta-btn" type="button">
+        <span class="cta-btn__text">Замовити зворотній дзвінок</span>
+      </button>
+    </div>
+
+    <div class="faq__right">
+      <div class="faq__list accordion">
+        <div  *ngFor="let item of faqItems; let i = index" 
+              class="accordion__item" 
+              [class.accordion__item--active]="activeIndex === i">
+          
+          <button class="accordion__header" 
+                  type="button"
+                  (click)="toggleItem(i)"
+                  [attr.aria-expanded]="activeIndex === i"
+                  [attr.aria-controls]="'faq-content-' + i">
+            <span class="accordion__question">
+              {{ item.question }}
+            </span>
+            <div class="accordion__icon"></div>
+          </button>
+
+          <ng-container *ngIf="(activeIndex || activeIndex === 0) && activeIndex === i">
+            <div class="accordion__content">
+              <div class="accordion__answer">
+                {{ faqItems[i].answer }}
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

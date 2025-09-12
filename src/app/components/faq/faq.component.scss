@@ -1,0 +1,141 @@
+.faq {
+  padding: 140px 0 0 0;
+
+  &__container {
+    max-width: 1200px;
+    width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 130px;
+    align-items: flex-start;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--white);
+    font-family: Tektur;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  &__description {
+    margin: 0;
+    color: var(--text-light-green);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: .2s ease;
+
+    &:hover {
+      color: var(--main-green);
+    }
+  }
+
+  &__item {
+
+    &--active {
+      .accordion__icon {
+        transition: .2s ease-out;
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__number {
+    color: var(--main-green);
+    font-size: 18px;
+    font-weight: 600;
+    min-width: 24px;
+  }
+
+  &__question {
+    color: var(--text-light-green);
+    font-family: Tektur;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  &__icon {
+    width: 10px;
+    height: 10px;
+    margin-left: auto;
+    transition: .2s ease;
+    flex-shrink: 0;
+    background: url('/assets/images/faq/arrow.svg') no-repeat center center;
+  }
+
+  &__content {
+    margin-top: 20px;
+  }
+
+  &__answer {
+    color: var(--text-light-green);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+.cta-btn {
+  width: fit-content;
+  border: 2px solid var(--main-green);
+  color: var(--black);
+  border-radius: 60px;
+  padding: 20px 48px;
+  transition: .2s ease;
+  cursor: pointer;
+  background: linear-gradient(180deg, #87FFC5 0%, rgba(85, 227, 142, 0.00) 36.49%), #00DF82;
+  box-shadow: 0 44.746px 55.275px 0 rgba(71, 186, 117, 0.16), 0 16.333px 20.176px 0 rgba(71, 186, 117, 0.23), 0 7.929px 9.795px 0 rgba(71, 186, 117, 0.29), 0 3.887px 4.802px 0 rgba(71, 186, 117, 0.36), 0 1.537px 1.899px 0 rgba(71, 186, 117, 0.52);
+
+  &:hover {
+    background: transparent;
+    color: var(--main-green);
+    box-shadow: none;
+    transition: .2s ease;
+
+    .cta-btn__text {
+      color: var(--main-green);
+      transition: .2s ease;
+    }
+  }
+
+  &__text {
+    color: var(--black);
+    text-align: center;
+    font-family: Tektur;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    transition: .2s ease;
+  }
+}

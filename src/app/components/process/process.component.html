@@ -1,0 +1,49 @@
+<section class="process">
+  <div class="process__container">
+    <h2 class="process__title">Наш процес</h2>
+
+    <div class="process__viewport" #viewport>
+      <div class="process__strip" #strip
+            [style.transform]="translateX"
+            [style.gap.px]="cardGap">
+        <article class="process__card"
+                  *ngFor="let s of slidesSig(); let i = index"
+                  [class.process__card--active]="i === index()"
+                  [style.width.px]="cardWidth"
+                  [style.height.px]="cardHeight"
+                  (click)="goTo(i)">
+          <div class="process__image">
+            <img [src]="s.image" [alt]="s.alt || s.title" loading="lazy" />
+          </div>
+          <div class="process__label">{{ s.title }}</div>
+          <div class="process__halo" aria-hidden="true"></div>
+        </article>
+      </div>
+    </div>
+
+    <div class="process__progress">
+      <div class="process__track">
+        <div class="process__rail">
+          <div class="process__rail-colored"
+                [style.width.%]="(100 * index()) / mathCount"></div>
+        </div>
+
+        <div class="process__tick"
+              *ngFor="let _ of slidesSig(); let i = index"
+              [style.left.%]="(100 * i) / mathCount"></div>
+
+        <button class="process__knob"
+                type="button"
+                [ngStyle]="knobStyle"
+                (pointerdown)="onKnobPointerDown($event)"
+                [attr.aria-valuemin]="0"
+                [attr.aria-valuemax]="count()-1"
+                [attr.aria-valuenow]="index()">
+          <span class="process__knob-number">
+            {{ (index()+1) | number:'2.0' }}
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

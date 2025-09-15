@@ -54,6 +54,7 @@
                   "maximumError": "8kB"
                 }
               ],
+              "baseHref": "/3dp-landing/",
               "outputHashing": "all"
             },
             "development": {

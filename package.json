@@ -13,7 +13,8 @@
     "serve:ssr": "node dist/3dp-landing/server/server.mjs",
     "dev:ssr": "ng run 3dp-landing:serve-ssr",
     "deploy": "ng build --configuration production --base-href \"/3dp-landing/\" && npx angular-cli-ghpages --dir=dist/3dp-landing",
-    "deploy:ssr": "npm run build:ssr:gh && npx angular-cli-ghpages --dir=dist/3dp-landing/browser"
+    "deploy:ssr": "npm run build:ssr:gh && npx angular-cli-ghpages --dir=dist/3dp-landing/browser",
+    "serve:ssr:3dp-landing": "node dist/3dp-landing/server/server.mjs"
   },
   "private": true,
   "dependencies": {

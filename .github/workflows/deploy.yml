@@ -22,13 +22,12 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
         
     - name: Install dependencies
-      run: npm ci --force
-      
+      run: npm install --legacy-peer-deps
+        
     - name: Build
-      run: ng build --configuration production --base-href "/3dp-landing/"
+      run: npx ng build --configuration production --base-href "/REPOSITORY_NAME/"
       
     - name: Setup Pages
       uses: actions/configure-pages@v4
@@ -36,7 +35,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: ./dist/browser/3dp-landing
+        path: ./dist/3dp-landing/browser
         
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4

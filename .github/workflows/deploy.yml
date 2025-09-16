@@ -27,7 +27,7 @@ jobs:
       run: npm install --legacy-peer-deps
         
     - name: Build
-      run: npx ng build --configuration production --base-href "/REPOSITORY_NAME/"
+      run: npx ng build --configuration production --base-href "/3dp-landing/"
       
     - name: Setup Pages
       uses: actions/configure-pages@v4

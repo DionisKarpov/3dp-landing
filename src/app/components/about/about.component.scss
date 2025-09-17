@@ -10,11 +10,6 @@
     z-index: 2;
   }
 
-  &__content {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
   &__title {
     margin-bottom: 16px;
     color: var(--white);
@@ -72,4 +67,29 @@
     color: var(--black);
     box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
   }
+}
+
+@media (max-width: 1200px) {
+  .about {
+
+    &__container {
+      max-width: calc(100vw - 48px);
+      padding: 0 24px;
+      margin: unset;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 768px) {
+  .about {
+    margin-top: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+
 }

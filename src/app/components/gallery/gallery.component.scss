@@ -57,3 +57,34 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .gallery {
+
+    &__container {
+      max-width: calc(100vw - 48px);
+      padding: 0 24px;
+      margin: unset;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: unset;
+    gap: 12px;
+    
+    * {
+      grid-area: unset;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+
+}

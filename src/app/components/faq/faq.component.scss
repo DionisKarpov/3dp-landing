@@ -137,5 +137,57 @@
     font-weight: 400;
     line-height: 120%;
     transition: .2s ease;
+    white-space: nowrap;
   }
+}
+
+@media (max-width: 1200px) {
+  .faq {
+
+    &__container {
+      gap: 16px;
+      max-width: calc(100vw - 48px);
+      padding: 0 24px;
+      margin: unset;
+    }
+
+    &__left {
+      gap: 32px;
+    }
+
+    &__title {
+      font-size: 32px;
+    }
+
+    &__description {
+      font-size: 16px;
+    }
+  }
+  .accordion {
+
+    &__question {
+      font-size: 16px;
+    }
+
+    &__answer {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 768px) {
+  .faq {
+    &__container {
+      grid-template-columns: 1fr;
+      gap: 130px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+
 }

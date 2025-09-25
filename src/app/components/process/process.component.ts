@@ -20,7 +20,6 @@ export class ProcessComponent {
   initialIndex = 0;
   index = signal(this.initialIndex);
   knobX = signal(0);
-  width = 1200;
   cardGap = 24;
   cardWidth = 282;
   cardHeight = 383;
@@ -116,6 +115,20 @@ export class ProcessComponent {
     this.removeUp   = this.r2.listen('document', 'pointerup',   up);
   }
 
+  goTo(i: number) {
+    const idx = Math.max(0, Math.min(i, this.count() - 1));
+    this.index.set(idx);
+    this.knobX.set(Math.round(idx * this.stepX()));
+  }
+
+  prev(): void {
+    this.goTo(this.index() - 1);
+  }
+
+  next(): void {
+    this.goTo(this.index() + 1);
+  }
+
   private detachDrag() {
     if (this.removeMove) { this.removeMove(); this.removeMove = undefined; }
     if (this.removeUp)   { this.removeUp();   this.removeUp = undefined; }
@@ -124,11 +137,6 @@ export class ProcessComponent {
   private stepX(): number {
     const steps = Math.max(1, this.count() - 1);
     return this.trackWidth() / steps;
-  }
-  goTo(i: number) {
-    const idx = Math.max(0, Math.min(i, this.count() - 1));
-    this.index.set(idx);
-    this.knobX.set(Math.round(idx * this.stepX()));
   }
 
   private trackEl(): HTMLElement {

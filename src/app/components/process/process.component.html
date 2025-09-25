@@ -45,5 +45,21 @@
         </button>
       </div>
     </div>
+
+    <div class="process__nav-buttons">
+      <button class="process__nav-button process__nav-button--prev"
+              type="button"
+              (click)="prev()">
+        <span class="process__nav-icon" aria-hidden="true">&#8592;</span>
+      </button>
+      <div class="process__nav-counter">
+        {{ (index()+1) | number:'2.0' }}/{{ count() | number:'2.0' }}
+      </div>
+      <button class="process__nav-button process__nav-button--next"
+              type="button"
+              (click)="next()">
+        <span class="process__nav-icon" aria-hidden="true">&#8594;</span>
+      </button>
+    </div>
   </div>
 </section>

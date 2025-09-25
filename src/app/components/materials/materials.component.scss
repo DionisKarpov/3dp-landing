@@ -125,40 +125,6 @@
   }
 }
 
-.cta-btn {
-  border: 2px solid var(--main-green);
-  color: var(--black);
-  border-radius: 60px;
-  padding: 20px 48px;
-  transition: .2s ease;
-  cursor: pointer;
-  background: linear-gradient(180deg, #87FFC5 0%, rgba(85, 227, 142, 0.00) 36.49%), #00DF82;
-  box-shadow: 0 44.746px 55.275px 0 rgba(71, 186, 117, 0.16), 0 16.333px 20.176px 0 rgba(71, 186, 117, 0.23), 0 7.929px 9.795px 0 rgba(71, 186, 117, 0.29), 0 3.887px 4.802px 0 rgba(71, 186, 117, 0.36), 0 1.537px 1.899px 0 rgba(71, 186, 117, 0.52);
-
-  &:hover {
-    background: transparent;
-    color: var(--main-green);
-    box-shadow: none;
-    transition: .2s ease;
-
-    .cta-btn__text {
-      color: var(--main-green);
-      transition: .2s ease;
-    }
-  }
-
-  &__text {
-    color: var(--black);
-    text-align: center;
-    font-family: Tektur;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
-    transition: .2s ease;
-  }
-}
-
 @media (max-width: 1200px) {
   .materials {
     max-width: calc(100vw - 48px);
@@ -193,7 +159,7 @@
     align-items: flex-start;
   }
 
-  .cta-btn {
+  .button {
     display: none;
   }
 }

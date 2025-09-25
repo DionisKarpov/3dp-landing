@@ -7,10 +7,6 @@
   padding: 120px 0 140px;
   margin: 0 auto;
 
-  &__container {
-    
-  }
-
   &__title {
     margin: 0 0 40px 0;
     color: var(--main-green);
@@ -160,28 +156,6 @@
       height: 100%;
       object-fit: contain;
     }
-  }
-}
-
-.cta-btn {
-  width: fit-content;
-  padding: 12px 32px;
-  color: var(--main-green);
-  background: var(--black);
-  border: 1px solid var(--main-green);
-  border-radius: 60px;
-  font-family: 'Tektur', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: .2s ease-out;
-  cursor: pointer;
-
-  &:hover {
-    background: var(--main-green);
-    color: var(--black);
-    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
   }
 }
 

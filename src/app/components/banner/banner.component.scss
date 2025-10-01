@@ -225,4 +225,8 @@
   .banner {
     padding-bottom: 0;
   }
+
+  .button--filled {
+    width: calc(100vw - 48px);
+  }
 }

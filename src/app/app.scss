@@ -6,6 +6,7 @@
   width: 100vw;
   min-height: 100vh;
   background-color: var(--black);
+  overflow: hidden;
 
   &__content {
     flex: 1;
@@ -18,5 +19,14 @@
     width: 100%;
     margin-top: auto;
     background-color: var(--dark-gray);
+  }
+}
+
+@media (max-width: 1200px) {
+  .main {
+    &__content {
+      width: 100vw;
+      max-width: 100vw;
+    }
   }
 }

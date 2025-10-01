@@ -51,6 +51,10 @@ export class ProcessComponent {
   }
 
   get translateX(): string {
+    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+      return 'translateX(0)';
+    }
+
     const n = this.count();
     const w = this.cardWidth;
     const gap = this.cardGap;
@@ -117,16 +121,32 @@ export class ProcessComponent {
 
   goTo(i: number) {
     const idx = Math.max(0, Math.min(i, this.count() - 1));
-    this.index.set(idx);
+    this.index.set(idx); // Спочатку оновіть індекс
     this.knobX.set(Math.round(idx * this.stepX()));
-  }
 
-  prev(): void {
-    this.goTo(this.index() - 1);
+    if (window.innerWidth <= 768) {
+      setTimeout(() => {
+        const cards = document.querySelectorAll('.process__card');
+        
+        if (cards[idx]) {
+          cards[idx].scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center',
+          });
+        }
+      }, 10);
+    }
   }
 
   next(): void {
-    this.goTo(this.index() + 1);
+    const newIndex = Math.min(this.index() + 1, this.count() - 1);
+    this.goTo(newIndex);
+  }
+
+  prev(): void {
+    const newIndex = Math.max(this.index() - 1, 0);
+    this.goTo(newIndex);
   }
 
   private detachDrag() {

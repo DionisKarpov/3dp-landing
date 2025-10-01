@@ -25,7 +25,8 @@
     padding: 8px 0;
     margin-bottom: 38px;
 
-    &:before, &:after {
+    &:before, 
+    &:after {
       content: "";
       position: absolute;
       top: 0;
@@ -254,14 +255,46 @@
 @media (max-width: 768px) {
   .process {
 
+    &__container {
+      width: 100vw;
+      max-width: 100vw;
+      padding: 0;
+      margin: unset;
+    }
+
     &__progress {
       display: none;
+    }
+
+    &__viewport {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-padding: 0 calc((100vw - 282px) / 2);
+      
+      &::after,
+      &::before {
+        display: none;
+      }
+    }
+
+    &__strip {
+      &::before {
+        content: '';
+        flex-shrink: 0;
+        width: calc((100vw - 282px) / 2);
+      }
+    }
+
+    &__card {
+      scroll-snap-align: center;
     }
 
     &__nav-buttons {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 24px;
     }
   }
 }

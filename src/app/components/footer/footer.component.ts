@@ -1,11 +1,13 @@
 import { Component, HostListener } from '@angular/core';
 import { ScrollService } from '../../services/scroll.service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
+
 export class FooterComponent {
   isScrolled: boolean = false;
   activeSection: string | null = null;

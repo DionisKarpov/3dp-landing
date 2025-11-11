@@ -51,6 +51,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    text-decoration: none;
   }
 
   &__bg-effects {
@@ -133,6 +134,7 @@
     line-height: 150%;
     letter-spacing: 5px;
     transition: .2s ease;
+    text-decoration: none;
 
     &:hover {
       color: var(--main-green);

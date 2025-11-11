@@ -67,7 +67,8 @@
     gap: 48px;
   }
 
-  &__link {
+  &__link,
+  &__phone {
     color: var(--text-light-green);
     text-decoration: none;
     font-size: 16px;
@@ -77,6 +78,20 @@
       color: var(--main-green);
       transition: all 0.3s ease;
     }
+  }
+
+  &__phone {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+  }
+
+  &__phone-icon {
+    width: 24px;
+    height: 32px;
+    background: url('../../../assets/images/phone.svg') no-repeat center center;
+    background-size: contain;
+    margin-right: 8px;
   }
 }
 

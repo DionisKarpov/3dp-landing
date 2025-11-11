@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component} from '@angular/core';
+import { Component, inject} from '@angular/core';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-advantages',
@@ -7,4 +8,9 @@ import { Component} from '@angular/core';
   styleUrls: ['./advantages.component.scss']
 })
 export class AdvantagesComponent {
+  private modalService = inject(ModalService);
+
+  openModal(): void {
+    this.modalService.openModal();
+  }
 }

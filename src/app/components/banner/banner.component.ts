@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ScrollService } from '../../services/scroll.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-banner',
@@ -7,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./banner.component.scss'],
   imports: [CommonModule]
 })
-export class BannerComponent implements OnInit {
+export class BannerComponent {
+  private modalService = inject(ModalService);
+  private scrollService = inject(ScrollService);  
 
-  constructor() { }
-
-  ngOnInit() {
+  scrollTo(sectionId: string): void {
+    this.scrollService.scrollToElement(sectionId);
   }
 
+  openModal(): void {
+    this.modalService.openModal();
+  }
 }

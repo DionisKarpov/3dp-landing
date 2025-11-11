@@ -11,8 +11,8 @@
         будь ласка зв'яжіться з нами:
       </p>
       
-      <button class="button button--filled button--big" type="button" [ngStyle]="{'width': 'fit-content'}">
-        Замовити зворотній дзвінок
+      <button class="button button--filled button--big" (click)="openModal()" [ngStyle]="{'width': 'fit-content'}">
+        Замовити друк
       </button>
     </div>
 

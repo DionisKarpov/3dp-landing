@@ -24,14 +24,13 @@
       </ul>
     </nav>
     
-    <button class="button button--outlined" type="button">
+    <a href="tel:+380998462892" class="nav__phone">
+      <div class="nav__phone-icon"></div>
+      +380 99 846 28 92
+    </a>
+
+    <button class="button button--outlined" (click)="openModal()">
       Замовити друк
-    </button>
-    
-    <button class="header__toggle mobile-toggle" type="button">
-      <span class="mobile-toggle__line"></span>
-      <span class="mobile-toggle__line"></span>
-      <span class="mobile-toggle__line"></span>
     </button>
   </div>
 </header>

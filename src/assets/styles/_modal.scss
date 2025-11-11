@@ -1,0 +1,42 @@
+.modal-backdrop {
+  background-color: #13380C40;
+  backdrop-filter: blur(4px);
+  opacity: 1 !important;
+}
+
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  max-width: 890px;
+}
+
+.modal-content {
+  background: var(--black);
+  border-radius: 32px;
+  border: 1px solid transparent;
+  transition: all .2s ease;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 32px;
+    padding: 1px;
+    background: linear-gradient(180deg, #26342D 0%, #728C80 100%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+    transition: all .2s ease;
+  }
+}
+
+.modal-body {
+  padding: 48px;
+}

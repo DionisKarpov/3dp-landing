@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-materials',
@@ -8,4 +9,9 @@ import { Component } from '@angular/core';
   imports: [CommonModule]
 })
 export class MaterialsComponent {
+  private modalService = inject(ModalService);
+
+  openModal(): void {
+    this.modalService.openModal();
+  }
 }

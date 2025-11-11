@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-faq',
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
   imports: [CommonModule]
 })
 export class FaqComponent {
+  private modalService = inject(ModalService);
+
   activeIndex: number | null = null;
 
   faqItems = [
@@ -59,5 +62,9 @@ export class FaqComponent {
     } else {
       this.activeIndex = index;
     }
+  }
+
+  openModal(): void {
+    this.modalService.openModal();
   }
 }

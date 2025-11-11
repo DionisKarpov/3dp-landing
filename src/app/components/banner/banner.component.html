@@ -10,7 +10,7 @@
         Від подачі замовлення до готового виробу - 6 годин
       </p>
       
-      <button class="button button--filled button--big" type="button">
+      <button class="button button--filled button--big" (click)="openModal()">
         Замовити друк
       </button>
     </div>
@@ -23,9 +23,9 @@
       </div>
     </div>
 
-    <div class="banner__scroll scroll-indicator">
+    <a class="banner__scroll scroll-indicator" href="#advantages" (click)="scrollTo('advantages')">
       <div class="scroll-indicator__icon"></div>
       <span class="scroll-indicator__text">Scroll Down</span>
-    </div>
+    </a>
   </div>
 </section>

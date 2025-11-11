@@ -28,4 +28,32 @@
   </div>
 </div>
 
+<ng-template #template>
+  <div class="modal-body order-modal">
+    <div class="order-modal__image">
+      <img src="assets/images/advantages/adv_3.webp" alt="">
+    </div>
+    <div class="order-modal__info">
+      <div class="order-modal__title">Замовити друк</div>
+      <a target="_blank" href="tel:+380998462892" class="order-modal__phone">+380 99 846 28 92</a>
+      <a target="_blank" href="https://t.me/print_ua" class="order-modal__telegram">
+        <div class="order-modal__telegram-icon"></div>
+        @print_ua
+      </a>
+      <a target="_blank" href="https://www.instagram.com/3dp.com.ua?igsh=cnkxY25nam44YjR4" 
+         class="order-modal__instagram">
+        <div class="order-modal__instagram-icon"></div>
+        @3dp.com.ua
+      </a>
+      <a target="_blank" href="mailto:3dp.info.ua@gmail.com" class="order-modal__mail">
+        <div class="order-modal__mail-icon"></div>
+        3dp.info.ua@gmail.com
+      </a>
+    </div>
+    <button class="order-modal__close-button button button--outlined" (click)="closeModal()">
+      Закрити
+    </button>
+  </div>
+</ng-template>
+
 <router-outlet></router-outlet>

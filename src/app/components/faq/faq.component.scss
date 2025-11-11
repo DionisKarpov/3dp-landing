@@ -81,6 +81,12 @@
     font-family: Tektur;
     font-size: 18px;
     font-weight: 400;
+    transition: .2s ease-out;
+
+    &:hover {
+      color: var(--main-green);
+      transition: .2s ease-out;
+    }
   }
 
   &__icon {
@@ -145,6 +151,7 @@
 
 @media (max-width: 768px) {
   .faq {
+    padding: 80px 0 0 0;
     &__container {
       grid-template-columns: 1fr;
       gap: 130px;

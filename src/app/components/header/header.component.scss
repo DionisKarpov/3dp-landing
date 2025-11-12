@@ -83,7 +83,9 @@
   &__phone {
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
     margin-right: 16px;
+    white-space: nowrap;
   }
 
   &__phone-icon {
@@ -110,12 +112,24 @@
     &__list {
       gap: 24px;
     }
+
+    &__phone {
+      margin-right: 0;
+    }
+  }
+
+  .button {
+    display: none;
   }
 }
 
 @media (max-width: 768px) {
   .header {
     padding-top: 32px;
+
+    &__content {
+      padding: 0;
+    }
   }
 
   .nav {
@@ -137,7 +151,5 @@
 }
 
 @media (max-width: 480px) {
-  .button {
-    display: none;
-  }
+
 }

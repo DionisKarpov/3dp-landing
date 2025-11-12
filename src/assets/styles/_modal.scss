@@ -40,3 +40,10 @@
 .modal-body {
   padding: 48px;
 }
+
+@media (max-width: 1024px) {
+  .modal-dialog {
+    margin: 0 auto;
+    max-width: 90vw;
+  } 
+}

@@ -6,11 +6,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ModalService {
-  public toOpenModal: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public toOpenModal: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
   constructor() {}
 
-  openModal() {
-    this.toOpenModal.next(true);
+  openModal(templateName: string): void {
+    this.toOpenModal.next(templateName);
   }
 }

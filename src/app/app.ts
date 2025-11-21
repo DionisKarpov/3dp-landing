@@ -31,7 +31,9 @@ import { ModalService } from './services/modal.service';
   styleUrl: './app.scss'
 })
 export class App {
-  @ViewChild('template') template!: TemplateRef<void>;
+  @ViewChild('contactUsTemplate') contactUsTemplate!: TemplateRef<void>;
+  @ViewChild('termsTemplate') termsTemplate!: TemplateRef<void>;
+  @ViewChild('policyTemplate') policyTemplate!: TemplateRef<void>;
   protected title = '3dp-landing';
   private modalService = inject(ModalService);
   private bsModalService = inject(BsModalService);
@@ -39,20 +41,24 @@ export class App {
   bsModalRef?: BsModalRef;
   
   constructor() {
-    this.modalService.toOpenModal.subscribe(open => {
-      if (open) {
-        this.openModal(this.template);
+    this.modalService.toOpenModal.subscribe(templateName => {
+      if (templateName) {
+        const template = templateName === 'contactUsTemplate' ? this.contactUsTemplate : 
+                         templateName === 'termsTemplate' ? this.termsTemplate : this.policyTemplate;
+        this.openModal(template);
       } else {
         this.closeModal();
       }
     });
-    }
+  }
 
   openModal(template: TemplateRef<void>) {
     this.bsModalRef = this.bsModalService.show(template);
   }
 
   closeModal() {
+    console.log('qweqwe');
+    
     this.bsModalRef?.hide();
   }
 }

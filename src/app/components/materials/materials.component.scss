@@ -31,6 +31,7 @@
 
 .card {
   display: flex;
+  flex-direction: row;
   gap: 32px;
   background: transparent;
   border: 1px solid transparent;

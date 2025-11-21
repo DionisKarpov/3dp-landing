@@ -11,6 +11,6 @@ export class AdvantagesComponent {
   private modalService = inject(ModalService);
 
   openModal(): void {
-    this.modalService.openModal();
+    this.modalService.openModal('contactUsTemplate');
   }
 }

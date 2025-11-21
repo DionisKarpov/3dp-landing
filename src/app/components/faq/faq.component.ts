@@ -65,6 +65,6 @@ export class FaqComponent {
   }
 
   openModal(): void {
-    this.modalService.openModal();
+    this.modalService.openModal('contactUsTemplate');
   }
 }

@@ -26,6 +26,6 @@ export class HeaderComponent {
   }
 
   openModal(): void {
-    this.modalService.openModal();
+    this.modalService.openModal('contactUsTemplate');
   }
 }

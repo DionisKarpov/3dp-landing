@@ -28,29 +28,77 @@
   </div>
 </div>
 
-<ng-template #template>
-  <div class="modal-body order-modal">
-    <div class="order-modal__image">
+<ng-template #contactUsTemplate>
+  <div class="modal-body modal">
+    <div class="modal__image">
       <img src="assets/images/advantages/adv_3.webp" alt="">
     </div>
-    <div class="order-modal__info">
-      <div class="order-modal__title">Замовити друк</div>
-      <a target="_blank" href="tel:+380998462892" class="order-modal__phone">+380 99 846 28 92</a>
-      <a target="_blank" href="https://t.me/print_ua" class="order-modal__telegram">
-        <div class="order-modal__telegram-icon"></div>
+    <div class="modal__info">
+      <div class="modal__title">Замовити друк</div>
+      <a target="_blank" href="tel:+380998462892" class="modal__phone">+380 99 846 28 92</a>
+      <a target="_blank" href="https://t.me/print_ua" class="modal__telegram">
+        <div class="modal__telegram-icon"></div>
         @print_ua
       </a>
       <a target="_blank" href="https://www.instagram.com/3dp.com.ua?igsh=cnkxY25nam44YjR4" 
-         class="order-modal__instagram">
-        <div class="order-modal__instagram-icon"></div>
+         class="modal__instagram">
+        <div class="modal__instagram-icon"></div>
         @3dp.com.ua
       </a>
-      <a target="_blank" href="mailto:3dp.info.ua@gmail.com" class="order-modal__mail">
-        <div class="order-modal__mail-icon"></div>
+      <a target="_blank" href="mailto:3dp.info.ua@gmail.com" class="modal__mail">
+        <div class="modal__mail-icon"></div>
         3dp.info.ua@gmail.com
       </a>
     </div>
-    <button class="order-modal__close-button button button--outlined" (click)="closeModal()">
+    <button class="modal__close-button button button--outlined" (click)="closeModal()">
+      Закрити
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #termsTemplate>
+  <div class="modal-body modal">
+    <div class="modal__image">
+      <img src="assets/images/advantages/adv_3.webp" alt="">
+    </div>
+    <div class="modal__info w-100">
+      <h2 class="modal__terms-and-policy-title modal__terms-and-policy-title">Умови використання</h2>
+      <h3 class="modal__terms-and-policy-title">Швидкий та дешевий 3D друк у Києві – 3DP.COM.UA</h3>
+      <p class="modal__terms-and-policy-paragraph">
+        3DP.COM.UA робить 3д друк доступним для всіх, хто цінує якість. Ми використовуємо професійне обладнання для роботи з різними матеріалами. Це дає змогу створювати як маленькі деталі, так і великі моделі. Ми приділяємо увагу кожному етапу виробничого процесу, щоб запропонувати найкращий результат. 
+        Технології FDM та SLA дозволяють вирішувати широкий спектр завдань. FDM підходить для міцних функціональних деталей різного розміру. MSLA забезпечує високу деталізацію для мініатюр та складних фігурок при виконанні 3д друку на замовлення. Ми пропонуємо одразу три типи технологій що дозволяє створювати проєкти будь-якої складності. 
+      </p>
+      <h3 class="modal__terms-and-policy-title">Принтери, якими ми друкуємо</h3>
+      <p class="modal__terms-and-policy-paragraph">
+        Обладнання відіграє вирішальну роль у процесі якісного 3д друку. В Києві наша студія використовує перевірені часом професійні пристрої різних типів. Ми обираємо обладнання за показниками точності, надійності та швидкості роботи. Кожен принтер проходить регулярне технічне обслуговування для забезпечення стабільних результатів.
+        Технології FDM та SLA дозволяють вирішувати широкий спектр завдань. FDM підходить для міцних функціональних деталей різного розміру. MSLA забезпечує високу деталізацію для мініатюр та складних фігурок при виконанні 3д друку на замовлення. Ми пропонуємо одразу три типи технологій що дозволяє створювати проєкти будь-якої складності. 
+      </p>
+    </div>
+    <button class="modal__close-button button button--outlined" (click)="closeModal()">
+      Закрити
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #policyTemplate>
+  <div class="modal-body modal">
+    <div class="modal__image">
+      <img src="assets/images/advantages/adv_3.webp" alt="">
+    </div>
+    <div class="modal__info w-100">
+      <h2 class="modal__terms-and-policy-title modal__terms-and-policy-title">Політика Конфіденціності</h2>
+      <h3 class="modal__terms-and-policy-title">Швидкий та дешевий 3D друк у Києві – 3DP.COM.UA</h3>
+      <p class="modal__terms-and-policy-paragraph">
+        3DP.COM.UA робить 3д друк доступним для всіх, хто цінує якість. Ми використовуємо професійне обладнання для роботи з різними матеріалами. Це дає змогу створювати як маленькі деталі, так і великі моделі. Ми приділяємо увагу кожному етапу виробничого процесу, щоб запропонувати найкращий результат. 
+        Технології FDM та SLA дозволяють вирішувати широкий спектр завдань. FDM підходить для міцних функціональних деталей різного розміру. MSLA забезпечує високу деталізацію для мініатюр та складних фігурок при виконанні 3д друку на замовлення. Ми пропонуємо одразу три типи технологій що дозволяє створювати проєкти будь-якої складності. 
+      </p>
+      <h3 class="modal__terms-and-policy-title">Принтери, якими ми друкуємо</h3>
+      <p class="modal__terms-and-policy-paragraph">
+        Обладнання відіграє вирішальну роль у процесі якісного 3д друку. В Києві наша студія використовує перевірені часом професійні пристрої різних типів. Ми обираємо обладнання за показниками точності, надійності та швидкості роботи. Кожен принтер проходить регулярне технічне обслуговування для забезпечення стабільних результатів.
+        Технології FDM та SLA дозволяють вирішувати широкий спектр завдань. FDM підходить для міцних функціональних деталей різного розміру. MSLA забезпечує високу деталізацію для мініатюр та складних фігурок при виконанні 3д друку на замовлення. Ми пропонуємо одразу три типи технологій що дозволяє створювати проєкти будь-якої складності. 
+      </p>
+    </div>
+    <button class="modal__close-button button button--outlined" (click)="closeModal()">
       Закрити
     </button>
   </div>

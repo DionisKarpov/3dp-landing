@@ -92,10 +92,6 @@
     align-items: center;
   }
 
-  &__item {
-
-  }
-
   &__link {
     color: var(--text-light-green);
     text-decoration: none;
@@ -172,6 +168,7 @@
     font-size: 14px;
     transition: color 0.3s ease;
     white-space: nowrap;
+    cursor: pointer;
 
     &:hover {
       color: #00ff88;

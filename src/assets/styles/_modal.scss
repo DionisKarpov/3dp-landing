@@ -4,6 +4,10 @@
   opacity: 1 !important;
 }
 
+.modal {
+  overflow: hidden;
+}
+
 .modal-dialog {
   display: flex;
   align-items: center;

@@ -97,7 +97,7 @@
   position: relative;
   padding: 72px 72px 92px 72px;
   border-radius: 32px;
-  background: #00DF82;
+  background: var(--main-green);
   overflow: hidden;
 
   &__info {

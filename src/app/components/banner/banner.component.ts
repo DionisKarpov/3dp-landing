@@ -18,6 +18,6 @@ export class BannerComponent {
   }
 
   openModal(): void {
-    this.modalService.openModal();
+    this.modalService.openModal('contactUsTemplate');
   }
 }

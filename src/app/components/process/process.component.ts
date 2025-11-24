@@ -32,9 +32,6 @@ export class ProcessComponent {
     { title: 'Пост-обробка', image: 'assets/images/process/3.webp', alt: 'Пост-обробка' },
     { title: 'Збірка', image: 'assets/images/process/4.webp', alt: 'Збірка' },
     { title: 'Готова модель', image: 'assets/images/process/5.webp', alt: 'Готова модель' },
-    { title: 'Пост-обробка', image: 'assets/images/process/1.webp', alt: 'Пост-обробка' },
-    { title: 'Збірка', image: 'assets/images/process/2.webp', alt: 'Збірка' },
-    { title: 'Готова модель', image: 'assets/images/process/3.webp', alt: 'Готова модель' },
   ]);
   slidesSig: Signal<ProcessSlide[]> = this._slides;
   count = computed(() => this._slides().length);

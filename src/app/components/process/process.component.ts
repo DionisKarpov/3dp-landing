@@ -1,5 +1,5 @@
-import { Component, signal, computed, Signal, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, signal, computed, Signal, ElementRef, Renderer2, ViewChild, AfterViewInit, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 export type ProcessSlide = {
   title: string;
@@ -13,19 +13,16 @@ export type ProcessSlide = {
   styleUrls: ['./process.component.scss'],
   imports: [CommonModule]
 })
-export class ProcessComponent {
+export class ProcessComponent implements AfterViewInit, OnDestroy {
   @ViewChild('viewport', { static: true }) viewportRef!: ElementRef<HTMLElement>;
-  @ViewChild('strip', { static: true }) stripRef!: ElementRef<HTMLElement>;
 
-  initialIndex = 0;
-  index = signal(this.initialIndex);
+  index = signal(0);
   knobX = signal(0);
-  cardGap = 24;
+  cardGap = 16;
   cardWidth = 282;
   cardHeight = 383;
-  trackPadding = 24;
-  stripStartX = 0;
-  stripMoved = false;
+  slideStep = 1;
+
   _slides = signal<ProcessSlide[]>([
     { title: 'Модель', image: 'assets/images/process/1.webp', alt: '3D модель' },
     { title: 'Друк', image: 'assets/images/process/2.webp', alt: 'Друк' },
@@ -33,34 +30,82 @@ export class ProcessComponent {
     { title: 'Збірка', image: 'assets/images/process/4.webp', alt: 'Збірка' },
     { title: 'Готова модель', image: 'assets/images/process/5.webp', alt: 'Готова модель' },
   ]);
+
   slidesSig: Signal<ProcessSlide[]> = this._slides;
   count = computed(() => this._slides().length);
-  trackLeft = computed(() => this.trackStart());
-  
+  isBrowser: boolean;
+  private wasMobile = false;
 
   private pointerId?: number;
   private dragStartX = 0;
   private dragStartIndex = 0;
+  private removeMove?: () => void;
+  private removeUp?: () => void;
+  private resizeHandler?: () => void;
 
-  private minSwipePx(): number {
-    const stepX = this.trackWidth() / Math.max(1, this.count() - 1);
-    return Math.max(20, stepX * 0.12);
+  constructor(
+    private el: ElementRef<HTMLElement>,
+    private r2: Renderer2,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
+    this.wasMobile = this.isMobile();
+    this.updateKnobPosition();
+    this.resizeHandler = () => {
+      const nowMobile = this.isMobile();
+      if (!this.wasMobile && nowMobile) {
+        setTimeout(() => this.scrollToActiveCard(), 100);
+      }
+      this.wasMobile = nowMobile;
+      this.updateKnobPosition();
+      this.index.set(this.index());
+    };
+    window.addEventListener('resize', this.resizeHandler);
+  }
+
+  ngOnDestroy(): void {
+    this.detachDrag();
+    if (this.isBrowser && this.resizeHandler) {
+      window.removeEventListener('resize', this.resizeHandler);
+    }
+  }
+
+  isMobile(): boolean {
+    return this.isBrowser && window.innerWidth <= 768;
   }
 
   get translateX(): string {
-    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+    if (this.isMobile()) {
       return 'translateX(0)';
     }
-
+    
+    const container = this.el.nativeElement.querySelector('.process__container');
+    const containerWidth = container ? container.clientWidth : 1200;
+    const activeCardWidth = 308;
+    const idx = this.index();
+    const firstCardMargin = 24;
+    
+    let offset = firstCardMargin;
+    for (let i = 0; i < idx; i++) {
+      offset += this.cardWidth + this.cardGap;
+    }
+    
+    offset = offset - (containerWidth / 2) + (activeCardWidth / 2);
+    
     const n = this.count();
-    const w = this.cardWidth;
-    const gap = this.cardGap;
-    const step = w + gap;
-    const contentW = n * w + (n - 1) * gap;
-    const maxOffset = Math.max(0, contentW - 1200);
-    const rawOffset = this.index() * step;
-    const clamped = Math.min(Math.max(rawOffset, 0), maxOffset);
-
+    let totalWidth = firstCardMargin;
+    for (let i = 0; i < n; i++) {
+      totalWidth += (i === idx ? activeCardWidth : this.cardWidth);
+      if (i < n - 1) totalWidth += this.cardGap;
+    }
+    
+    const maxOffset = Math.max(0, totalWidth - containerWidth);
+    const clamped = Math.min(Math.max(offset, 0), maxOffset);
+    
     return `translateX(${-Math.round(clamped)}px)`;
   }
 
@@ -69,15 +114,11 @@ export class ProcessComponent {
   }
 
   get mathCount(): number {
-    return Math.max(1, this.count()-1)
+    return Math.max(1, this.count() - 1);
   }
 
-  private removeMove?: () => void;
-  private removeUp?: () => void;
-
-  constructor(private el: ElementRef<HTMLElement>, private r2: Renderer2) {}
-
-  onKnobPointerDown(ev: PointerEvent) {
+  onKnobPointerDown(ev: PointerEvent): void {
+    if (this.isMobile()) return;
     ev.preventDefault();
     (ev.target as Element).setPointerCapture?.(ev.pointerId);
     this.pointerId = ev.pointerId;
@@ -90,65 +131,67 @@ export class ProcessComponent {
       if (e.pointerId !== this.pointerId) return;
       const rel = e.clientX - left;
       const clamped = Math.max(0, Math.min(rel, this.trackWidth()));
-      this.knobX.set(clamped); 
+      this.knobX.set(clamped);
     };
 
     const up = (e: PointerEvent) => {
       if (e.pointerId !== this.pointerId) return;
-
-      const dx = this.knobX() - this.dragStartX;
-      const thr = this.minSwipePx();
-
-      if (dx > thr) {
-        this.goTo(this.dragStartIndex + 1);
-      } else if (dx < -thr) {
-        this.goTo(this.dragStartIndex - 1);
-      } else {
-        const idx = this.nearestIndexByX(this.knobX());
-        this.goTo(idx);
-      }
-
+      const idx = this.nearestIndexByX(this.knobX());
+      this.goTo(idx);
       this.detachDrag();
       this.pointerId = undefined;
     };
 
     this.removeMove = this.r2.listen('document', 'pointermove', move);
-    this.removeUp   = this.r2.listen('document', 'pointerup',   up);
+    this.removeUp = this.r2.listen('document', 'pointerup', up);
   }
 
-  goTo(i: number) {
+  goTo(i: number): void {
     const idx = Math.max(0, Math.min(i, this.count() - 1));
-    this.index.set(idx); // Спочатку оновіть індекс
-    this.knobX.set(Math.round(idx * this.stepX()));
+    this.index.set(idx);
+    this.updateKnobPosition();
 
-    if (window.innerWidth <= 768) {
-      setTimeout(() => {
-        const cards = document.querySelectorAll('.process__card');
-        
-        if (cards[idx]) {
-          cards[idx].scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'center',
-          });
-        }
-      }, 10);
+    if (this.isMobile()) {
+      requestAnimationFrame(() => this.scrollToActiveCard());
     }
   }
 
   next(): void {
-    const newIndex = Math.min(this.index() + 1, this.count() - 1);
-    this.goTo(newIndex);
+    this.goTo(this.index() + this.slideStep);
   }
 
   prev(): void {
-    const newIndex = Math.max(this.index() - 1, 0);
-    this.goTo(newIndex);
+    this.goTo(this.index() - this.slideStep);
   }
 
-  private detachDrag() {
-    if (this.removeMove) { this.removeMove(); this.removeMove = undefined; }
-    if (this.removeUp)   { this.removeUp();   this.removeUp = undefined; }
+  private updateKnobPosition(): void {
+    if (!this.isMobile()) {
+      this.knobX.set(Math.round(this.index() * this.stepX()));
+    }
+  }
+
+  private scrollToActiveCard(): void {
+    if (!this.isMobile() || !this.viewportRef) return;
+    const cards = this.viewportRef.nativeElement.querySelectorAll('.process__card');
+    const activeCard = cards[this.index()] as HTMLElement;
+    if (activeCard) {
+      activeCard.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center',
+      });
+    }
+  }
+
+  private detachDrag(): void {
+    if (this.removeMove) {
+      this.removeMove();
+      this.removeMove = undefined;
+    }
+    if (this.removeUp) {
+      this.removeUp();
+      this.removeUp = undefined;
+    }
   }
 
   private stepX(): number {
@@ -162,15 +205,11 @@ export class ProcessComponent {
 
   private trackMetrics() {
     const rect = this.trackEl().getBoundingClientRect();
-    return { left: rect.left, x: rect.x, width: rect.width };
+    return { left: rect.left };
   }
 
   private trackWidth(): number {
-    return this.trackEl().clientWidth;
-  }
-
-  private trackStart(): number {
-    return this.trackPadding;
+    return this.trackEl()?.clientWidth || 0;
   }
 
   private nearestIndexByX(x: number): number {

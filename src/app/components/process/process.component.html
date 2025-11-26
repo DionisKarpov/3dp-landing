@@ -3,7 +3,7 @@
     <h2 class="process__title">Наш процес</h2>
 
     <div class="process__viewport" #viewport>
-      <div class="process__strip" #strip
+      <div class="process__strip"
             [style.transform]="translateX"
             [style.gap.px]="cardGap">
         <article class="process__card"
@@ -27,10 +27,6 @@
           <div class="process__rail-colored"
                 [style.width.%]="(100 * index()) / mathCount"></div>
         </div>
-
-        <div class="process__tick"
-              *ngFor="let _ of slidesSig(); let i = index"
-              [style.left.%]="(100 * i) / mathCount"></div>
 
         <button class="process__knob"
                 type="button"

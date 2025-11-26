@@ -57,8 +57,6 @@ export class App {
   }
 
   closeModal() {
-    console.log('qweqwe');
-    
     this.bsModalRef?.hide();
   }
 }

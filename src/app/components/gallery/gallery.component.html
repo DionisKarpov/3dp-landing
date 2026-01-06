@@ -1,31 +1,36 @@
 <section class="gallery">
   <div class="gallery__container">
-    <h2 class="gallery__title">
-      Ми в Instagram
-    </h2>
+    <h2 class="gallery__title">Ми в Instagram</h2>
 
     <div class="gallery d-flex">
       <div class="d-flex flex-column">
         <div class="d-flex">
-          <div class="gallery__item">
+          <div class="gallery__item" (click)="openImage('assets/images/examples/1.webp')">
             <img src="assets/images/examples/1.webp" alt="Gallery Image 1" />
           </div>
-          <div class="gallery__item">
+          <div class="gallery__item" (click)="openImage('assets/images/examples/2.webp')">
             <img src="assets/images/examples/2.webp" alt="Gallery Image 2" />
           </div>
         </div>
         <div class="d-flex">
-          <div class="gallery__item">
+          <div class="gallery__item" (click)="openImage('assets/images/examples/3.webp')">
             <img src="assets/images/examples/3.webp" alt="Gallery Image 3" />
           </div>
-          <div class="gallery__item">
+          <div class="gallery__item" (click)="openImage('assets/images/examples/4.webp')">
             <img src="assets/images/examples/4.webp" alt="Gallery Image 4" />
           </div>
         </div>
       </div>
-      <div class="gallery__item">
+      <div class="gallery__item" (click)="openImage('assets/images/examples/5.webp')">
         <img src="assets/images/examples/5.webp" alt="Gallery Image 5" />
       </div>
     </div>
   </div>
 </section>
+
+<div *ngIf="selectedImage" class="lightbox" (click)="closeImage()">
+  <div class="lightbox" (click)="closeImage()">
+    <img [src]="selectedImage" alt="Enlarged image" (click)="$event.stopPropagation()">
+    <button class="lightbox__close" (click)="closeImage()">✕</button>
+  </div>
+</div>

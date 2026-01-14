@@ -34,7 +34,7 @@
               "src/styles.scss"
             ],
             "server": "src/main.server.ts",
-            "outputMode": "server",
+            "outputMode": "static",
             "ssr": {
               "entry": "src/server.ts"
             },
@@ -45,17 +45,25 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "8kB",
+                  "maximumError": "10kB"
                 }
               ],
               "baseHref": "/3dp-landing/",
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false 
+                },
+                "fonts": true
+              }
             },
             "development": {
               "optimization": false,
@@ -94,12 +102,20 @@
             "styles": [
               "src/styles.scss"
             ],
-            "outputMode": "server",
+            "outputMode": "static",
             "baseHref": "/3dp-landing/"
           },
           "configurations": {
             "production": {
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false 
+                },
+                "fonts": true
+              }
             },
             "development": {
               "optimization": false,

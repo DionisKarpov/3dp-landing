@@ -1,60 +1,43 @@
-# 3dpLanding
+🛠️ Getting Started
+1. Installation
+Before running any scripts, you must install the project dependencies. This step downloads all required Angular packages, SSR tools, and build optimizers defined in package.json.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0.
+Bash
 
-## Development server
+npm install
+🚀 Build & Rendering Process
+This project utilizes the modern Angular Application Builder (based on esbuild) to handle Hybrid Rendering (CSR + SSR/SSG) in a single step.
 
-To start a local development server, run:
+2. How to Build
+To generate the production build, run:
 
-```bash
-ng serve
-```
+Bash
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+npm run build
+What Happens During the Build?
+The ng build command now performs three key tasks automatically:
 
-## Code scaffolding
+Browser Bundling: Compiles TypeScript and SCSS into optimized JavaScript and CSS for the client.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Server Bundling: Generates the Node.js server logic required for Server-Side Rendering (SSR).
 
-```bash
-ng generate component component-name
-```
+Prerendering (SSG): It boots up the server internally, extracts routes, and generates static HTML files for immediate loading and better SEO.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Output Structure (dist/)
+After the build finishes, the dist/3dp-landing/ folder will contain:
 
-```bash
-ng generate --help
-```
+📂 browser/: Contains the static assets (HTML, JS, CSS, images).
 
-## Building
+Note: This is the folder deployed to GitHub Pages or static hosts (Nginx/Apache).
 
-To build the project run:
+📂 server/: Contains the server.mjs file.
 
-```bash
-ng build
-```
+Note: Used only if hosting on a Node.js server for dynamic SSR.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+3. Deployment
+To build and deploy to GitHub Pages:
 
-## Running unit tests
+Bash
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# 3dp-lading
+npm run deploy
+This script builds the project with the correct base-href and pushes the contents of the browser folder to the gh-pages branch.
